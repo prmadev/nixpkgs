@@ -16,10 +16,10 @@ buildGoModule rec {
     owner = "gohugoio";
     repo = "hugo";
     rev = "refs/tags/v${version}";
-    hash = "sha256-WgsO9743rkJKrhVqhMCgWNOPF0KmvNP1e1RPqWffF3w=";
+    hash = "sha256-sL/LiQwbn3nD2eDFNuAbDHRGemTiBhTfb5IaugYL9dM=";
   };
 
-  vendorHash = "sha256-LQLrbFJUW3X4F6L7JxQJRmkQFvuFraHJRBoGLt/ObSg=";
+  vendorHash = "sha256-V7YRrC+6fOIjXOu7E0kIOZZt++4oFLPhmHeWmOVU3Xw=";
 
   doCheck = false;
 
