@@ -1,13 +1,13 @@
-{ stdenv
-, lib
-, buildGoModule
-, fetchFromGitHub
-, installShellFiles
-, buildPackages
-, testers
-, hugo
+{
+  stdenv,
+  lib,
+  buildGoModule,
+  fetchFromGitHub,
+  installShellFiles,
+  buildPackages,
+  testers,
+  hugo,
 }:
-
 buildGoModule rec {
   pname = "hugo";
   version = "0.124.1";
@@ -16,7 +16,7 @@ buildGoModule rec {
     owner = "gohugoio";
     repo = "hugo";
     rev = "refs/tags/v${version}";
-    hash = "sha256-ueosu4mUqI9TH3nlOEjZBkejeo3WEfPqzLRNbj1B2Ec=";
+    hash = "sha256-LQLrbFJUW3X4F6L7JxQJRmkQFvuFraHJRBoGLt/ObSg=";
   };
 
   vendorHash = "sha256-LQLrbFJUW3X4F6L7JxQJRmkQFvuFraHJRBoGLt/ObSg=";
@@ -25,15 +25,17 @@ buildGoModule rec {
 
   proxyVendor = true;
 
-  tags = [ "extended" ];
+  tags = ["extended"];
 
-  subPackages = [ "." ];
+  subPackages = ["."];
 
-  nativeBuildInputs = [ installShellFiles ];
+  nativeBuildInputs = [installShellFiles];
 
-  ldflags = [ "-s" "-w" "-X github.com/gohugoio/hugo/common/hugo.vendorInfo=nixpkgs" ];
+  ldflags = ["-s" "-w" "-X github.com/gohugoio/hugo/common/hugo.vendorInfo=nixpkgs"];
 
-  postInstall = let emulator = stdenv.hostPlatform.emulator buildPackages; in ''
+  postInstall = let
+    emulator = stdenv.hostPlatform.emulator buildPackages;
+  in ''
     ${emulator} $out/bin/hugo gen man
     installManPage man/*
     installShellCompletion --cmd hugo \
@@ -54,6 +56,6 @@ buildGoModule rec {
     homepage = "https://gohugo.io";
     license = lib.licenses.asl20;
     mainProgram = "hugo";
-    maintainers = with lib.maintainers; [ schneefux Br1ght0ne Frostman ];
+    maintainers = with lib.maintainers; [schneefux Br1ght0ne Frostman];
   };
 }

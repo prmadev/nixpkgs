@@ -1,0 +1,27 @@
+
+From 39cca54ab0f547b5a59959f9cf4541ea63a53220 Mon Sep 17 00:00:00 2001
+From: Paul Meyer <49727155+katexochen@users.noreply.github.com>
+Date: Tue, 20 Feb 2024 16:04:27 +0100
+Subject: [PATCH] go, buildGoModule, buildGoPackage: default to 1.22
+
+---
+ pkgs/top-level/all-packages.nix | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/pkgs/top-level/all-packages.nix b/pkgs/top-level/all-packages.nix
+index 9b3000f6f5d92d..f99aef1e8302b6 100644
+--- a/pkgs/top-level/all-packages.nix
++++ b/pkgs/top-level/all-packages.nix
+@@ -25753,9 +25753,9 @@ with pkgs;
+   ### DEVELOPMENT / GO
+ 
+   # the unversioned attributes should always point to the same go version
+-  go = go_1_21;
+-  buildGoModule = buildGo121Module;
+-  buildGoPackage = buildGo121Package;
++  go = go_1_22;
++  buildGoModule = buildGo122Module;
++  buildGoPackage = buildGo122Package;
+ 
+   # requires a newer Apple SDK
+   go_1_20 = darwin.apple_sdk_11_0.callPackage ../development/compilers/go/1.20.nix {

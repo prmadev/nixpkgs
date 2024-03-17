@@ -1,0 +1,31 @@
+From f27ac4a21c9481f1172cb79442c24b95500f6e0a Mon Sep 17 00:00:00 2001
+From: Jordan Isaacs <jordan@snowytrees.dev>
+Date: Thu, 14 Mar 2024 22:14:31 -0700
+Subject: [PATCH] kernel-doc: fix build
+
+---
+ pkgs/os-specific/linux/kernel/htmldocs.nix | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/pkgs/os-specific/linux/kernel/htmldocs.nix b/pkgs/os-specific/linux/kernel/htmldocs.nix
+index ba641347c839e8..dad377db06abbc 100644
+--- a/pkgs/os-specific/linux/kernel/htmldocs.nix
++++ b/pkgs/os-specific/linux/kernel/htmldocs.nix
+@@ -18,7 +18,8 @@ stdenv.mkDerivation {
+   postPatch = ''
+     patchShebangs \
+       Documentation/sphinx/parse-headers.pl \
+-      scripts/{get_abi.pl,get_feat.pl,kernel-doc,sphinx-pre-install}
++      scripts/{get_abi.pl,get_feat.pl,kernel-doc,sphinx-pre-install} \
++      tools/net/ynl/ynl-gen-rst.py
+   '';
+ 
+   FONTCONFIG_FILE = makeFontsConf {
+@@ -31,6 +32,7 @@ stdenv.mkDerivation {
+     perl
+     python3.pkgs.sphinx
+     python3.pkgs.sphinx-rtd-theme
++    python3.pkgs.pyyaml
+     which
+   ];
+ 
